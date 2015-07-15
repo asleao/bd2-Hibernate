@@ -32,9 +32,9 @@ public class JogadorDAO extends DAO{
         deletar(id, Jogador.class);
     }
 
-    @Override
-    public List<?> selecionarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public List<Jogador> selecionarTodos() {
+        return (List<Jogador>) selecionarTodos(Jogador.class);
     }
 
     @Override

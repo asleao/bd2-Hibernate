@@ -5,7 +5,9 @@
  */
 package br.edu.ifes.bd2hibernate.cgd;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -58,7 +60,27 @@ public abstract class DAO {
         HibernateSessionManager.shutdown();
     }
 
-    public abstract List<?> selecionarTodos();
+    public  List<?> selecionarTodos(Class c){        
+        List listObj = new ArrayList();        
+        
+        try {
+            Session s = this.sessionFactory.openSession();
+            s.beginTransaction();
 
+            Query query = s.createQuery("from " + c.getName());
+            listObj =  query.list();
+
+            s.getTransaction().commit();
+            HibernateSessionManager.shutdown();
+            return listObj;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            HibernateSessionManager.shutdown();
+        }
+       return listObj;
+    }
+
+    
     public abstract Object selecionar(int id);
 }

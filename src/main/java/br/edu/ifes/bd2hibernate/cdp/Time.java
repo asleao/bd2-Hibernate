@@ -92,6 +92,11 @@ public class Time extends TimeDAO implements Serializable{
     public void setMensalidadeSocio(float mensalidadeSocio) {
         this.mensalidadeSocio = mensalidadeSocio;
     }
+
+    @Override
+    public String toString() {
+        return "Time{" + "id=" + id + ", nome=" + nome + ", dataCriacao=" + dataCriacao + ", mensalidadeSocio=" + mensalidadeSocio + '}';
+    }
    
     
 }

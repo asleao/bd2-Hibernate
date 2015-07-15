@@ -6,9 +6,8 @@
 package br.edu.ifes.bd2hibernate.cgt;
 
 import br.edu.ifes.bd2hibernate.cdp.Time;
-import br.edu.ifes.bd2hibernate.cgd.HibernateSessionManager;
-import java.util.Date;
-import org.hibernate.Session;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,7 +16,13 @@ import org.hibernate.Session;
 public class Main {
 
     public static void main(String args[]) {
-        Time time = new Time(4, "Florminense das Laranjeiras", new Date(), 500.00f);
-        time.deletar(time.getId());
+//        Time time = new Time(4, "Florminense das Laranjeiras", new Date(), 500.00f);
+        List<Time> listaTime = new ArrayList();
+        Time time = new Time();
+        listaTime = time.selecionarTodos();
+        
+        for (Time t : listaTime) {
+            System.out.println(t.toString());
+        }
     }
 }

@@ -31,9 +31,9 @@ public class TimeDAO extends DAO {
         deletar(id, Time.class);
     }
 
-    @Override
-    public List<?> selecionarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public List<Time> selecionarTodos() {
+        return (List<Time>) selecionarTodos(Time.class);
     }
 
     @Override
