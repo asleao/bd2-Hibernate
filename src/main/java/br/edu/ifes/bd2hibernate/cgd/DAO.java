@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 /**
  *
@@ -17,70 +16,85 @@ import org.hibernate.SessionFactory;
  */
 public abstract class DAO {
 
-    public SessionFactory sessionFactory = HibernateSessionManager.getSessionFactory();
+    
 
     public void inserir(Object obj, Class c) {
-        Session s = this.sessionFactory.openSession();
-        s.beginTransaction();
+        Session s = HibernateUtil.getSession();
+        HibernateUtil.begin();
+        
         s.save(c.cast(obj));
-        s.getTransaction().commit();
-        HibernateSessionManager.shutdown();
+        
+        HibernateUtil.commit();
+        HibernateUtil.close();
     }
 
-    ;
     
     public void atualizar(Object obj, Class c) {
-        Session s = this.sessionFactory.openSession();
-        s.beginTransaction();
+        Session s = HibernateUtil.getSession();
+        HibernateUtil.begin();
+        
         s.update(c.cast(obj));
-        s.getTransaction().commit();
-        HibernateSessionManager.shutdown();
+        
+        HibernateUtil.commit();
+        HibernateUtil.close();
     }
-
-    ;
     
     public void deletar(int id, Class c) {
-        Session s = this.sessionFactory.openSession();
-        s.beginTransaction();
+        Session s = HibernateUtil.getSession();
+        HibernateUtil.begin();
 
         Object o = c.cast(s.load(c, new Integer(id)));
         s.delete(c.cast(o));
 
-        s.getTransaction().commit();
-        HibernateSessionManager.shutdown();
+        HibernateUtil.commit();
+        HibernateUtil.close();
     }
 
     public void deletar(Object obj, Class c) {
-        Session s = this.sessionFactory.openSession();
-        s.beginTransaction();
+        Session s = HibernateUtil.getSession();
+        HibernateUtil.begin();
         
         s.delete(c.cast(obj));
 
-        s.getTransaction().commit();
-        HibernateSessionManager.shutdown();
+        HibernateUtil.commit();
+        HibernateUtil.close();
     }
 
     public  List<?> selecionarTodos(Class c){        
         List listObj = new ArrayList();        
         
         try {
-            Session s = this.sessionFactory.openSession();
-            s.beginTransaction();
+            Session s = HibernateUtil.getSession();
+            HibernateUtil.begin();
 
             Query query = s.createQuery("from " + c.getName());
             listObj =  query.list();
 
-            s.getTransaction().commit();
-            HibernateSessionManager.shutdown();
+            HibernateUtil.commit();
+            HibernateUtil.close();
             return listObj;
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            HibernateSessionManager.shutdown();
         }
        return listObj;
     }
 
     
-    public abstract Object selecionar(int id);
+    public Object selecionar(int id, Class c) {
+        Object o = null;
+        try {
+
+            Session s = HibernateUtil.getSession();
+            HibernateUtil.begin();
+            
+            o = s.get(c, id);
+            
+            HibernateUtil.commit();
+            HibernateUtil.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return o;
+    }
 }
+

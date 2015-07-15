@@ -104,5 +104,9 @@ public class Jogador extends JogadorDAO implements Serializable{
     public void setTime(Time time) {
         this.time = time;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Jogador{" + "id=" + id + ", nome=" + nome + ", dataNascimento=" + dataNascimento + ", endereco=" + endereco + ", time=" + time + '}';
+    }
 }

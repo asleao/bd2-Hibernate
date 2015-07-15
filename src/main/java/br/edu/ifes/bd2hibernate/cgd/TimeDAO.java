@@ -36,9 +36,8 @@ public class TimeDAO extends DAO {
         return (List<Time>) selecionarTodos(Time.class);
     }
 
-    @Override
-    public Object selecionar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Time selecionar(int id) {
+        return (Time) selecionar(id, Time.class);
     }
     
 }

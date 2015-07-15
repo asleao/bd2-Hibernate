@@ -37,9 +37,8 @@ public class JogadorDAO extends DAO{
         return (List<Jogador>) selecionarTodos(Jogador.class);
     }
 
-    @Override
-    public Object selecionar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Jogador selecionar(int id) {
+        return (Jogador) selecionar(id, Jogador.class);
     }
     
 }

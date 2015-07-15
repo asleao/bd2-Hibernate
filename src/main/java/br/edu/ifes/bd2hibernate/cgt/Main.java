@@ -7,7 +7,10 @@ package br.edu.ifes.bd2hibernate.cgt;
 
 import br.edu.ifes.bd2hibernate.cdp.Jogador;
 import br.edu.ifes.bd2hibernate.cdp.Time;
+import br.edu.ifes.bd2hibernate.cgd.HibernateUtil;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -16,16 +19,22 @@ import java.util.Date;
 public class Main {
 
     public static void main(String args[]) {
-        Time time = new Time(3, "Florminense das Laranjeiras", new Date(), 500.00f);
-//        List<Time> listaTime = new ArrayList();
-//        Time time = new Time();
-//        Time time = new Time().selecionarTodos().get(0);
-//        
-//        for (Time t : listaTime) {
-//            System.out.println(t.toString());
-//        }
+        List<Time> listaTime = new ArrayList();
+        Time time = new Time();
+        listaTime = time.selecionarTodos();
+        for (Time t : listaTime) {
+            System.out.println(t);
+        }
         
-        Jogador j = new Jogador("Rafael Sobis", new Date(), "Rua Colina", time);
+        Jogador j = new Jogador("André Leão", new Date(), "Rua Tinhosa", listaTime.get(0));
         j.inserir(j);
+        
+        j = j.selecionar(1);
+        System.out.println(j);
+        //System.out.println(j);
+        //j.setNome("André Leão");
+        //j.atualizar(j);
+        
+        HibernateUtil.shutdown();
     }
 }
