@@ -17,16 +17,7 @@ import org.hibernate.Session;
 public class Main {
 
     public static void main(String args[]) {
-        Session session = HibernateSessionManager.getSessionFactory().openSession();
-
-        session.beginTransaction();
-        Time time = new Time("Flamengo", new Date(), 2000.00f);
-//        Jogador jogador = new Jogador(null, "André Leão", Calendar.getInstance(), "Rua", "");
-
-
-        session.save(time);
-        session.getTransaction().commit();
-        
-        HibernateSessionManager.shutdown();
+        Time time = new Time(4, "Florminense das Laranjeiras", new Date(), 500.00f);
+        time.deletar(time.getId());
     }
 }

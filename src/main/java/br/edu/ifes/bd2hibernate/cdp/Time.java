@@ -5,6 +5,7 @@
  */
 package br.edu.ifes.bd2hibernate.cdp;
 
+import br.edu.ifes.bd2hibernate.cgd.TimeDAO;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -24,7 +25,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "times")
-public class Time implements Serializable{
+public class Time extends TimeDAO implements Serializable{
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")
