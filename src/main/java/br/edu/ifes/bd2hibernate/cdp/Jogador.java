@@ -5,6 +5,7 @@
  */
 package br.edu.ifes.bd2hibernate.cdp;
 
+import br.edu.ifes.bd2hibernate.cgd.JogadorDAO;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -25,7 +26,7 @@ import org.hibernate.annotations.GenericGenerator;
  */
 @Entity
 @Table(name = "jogadores")
-public class Jogador implements Serializable{
+public class Jogador extends JogadorDAO implements Serializable{
     @Id
     @GeneratedValue(generator="increment")
     @GenericGenerator(name="increment", strategy = "increment")

@@ -5,9 +5,9 @@
  */
 package br.edu.ifes.bd2hibernate.cgt;
 
+import br.edu.ifes.bd2hibernate.cdp.Jogador;
 import br.edu.ifes.bd2hibernate.cdp.Time;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 /**
  *
@@ -16,13 +16,16 @@ import java.util.List;
 public class Main {
 
     public static void main(String args[]) {
-//        Time time = new Time(4, "Florminense das Laranjeiras", new Date(), 500.00f);
-        List<Time> listaTime = new ArrayList();
-        Time time = new Time();
-        listaTime = time.selecionarTodos();
+        Time time = new Time(3, "Florminense das Laranjeiras", new Date(), 500.00f);
+//        List<Time> listaTime = new ArrayList();
+//        Time time = new Time();
+//        Time time = new Time().selecionarTodos().get(0);
+//        
+//        for (Time t : listaTime) {
+//            System.out.println(t.toString());
+//        }
         
-        for (Time t : listaTime) {
-            System.out.println(t.toString());
-        }
+        Jogador j = new Jogador("Rafael Sobis", new Date(), "Rua Colina", time);
+        j.inserir(j);
     }
 }
