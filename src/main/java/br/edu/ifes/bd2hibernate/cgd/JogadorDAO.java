@@ -6,6 +6,8 @@
 package br.edu.ifes.bd2hibernate.cgd;
 
 import br.edu.ifes.bd2hibernate.cdp.Jogador;
+import br.edu.ifes.bd2hibernate.cdp.Time;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +33,6 @@ public class JogadorDAO extends DAO{
     public void deletar(int id) {
         deletar(id, Jogador.class);
     }
-
     
     public List<Jogador> selecionarTodos() {
         return (List<Jogador>) selecionarTodos(Jogador.class);
@@ -41,4 +42,18 @@ public class JogadorDAO extends DAO{
         return (Jogador) selecionar(id, Jogador.class);
     }
     
+    public List<Jogador> selecionar(String nomeTime){
+        
+        List jogadores = new ArrayList();
+        try {
+            Time t = new Time().selecionar(nomeTime);
+            Jogador j = new Jogador();
+            j.setTime(t);
+            jogadores.addAll(t.getJogadores());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return jogadores;
+    }
 }

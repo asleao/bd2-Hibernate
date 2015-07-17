@@ -93,6 +93,14 @@ public class Time extends TimeDAO implements Serializable{
         this.mensalidadeSocio = mensalidadeSocio;
     }
 
+    public Set<Jogador> getJogadores() {
+        return jogadores;
+    }
+
+    public void setJogadores(Set<Jogador> jogadores) {
+        this.jogadores = jogadores;
+    }
+
     @Override
     public String toString() {
         return "Time{" + "id=" + id + ", nome=" + nome + ", dataCriacao=" + dataCriacao + ", mensalidadeSocio=" + mensalidadeSocio + '}';

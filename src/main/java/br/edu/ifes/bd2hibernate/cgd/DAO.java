@@ -5,10 +5,14 @@
  */
 package br.edu.ifes.bd2hibernate.cgd;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Example;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -60,7 +64,7 @@ public abstract class DAO {
         HibernateUtil.close();
     }
 
-    public  List<?> selecionarTodos(Class c){        
+    public List<?> selecionarTodos(Class c){        
         List listObj = new ArrayList();        
         
         try {
@@ -78,7 +82,37 @@ public abstract class DAO {
         }
        return listObj;
     }
-
+    
+    public List<?> selecionar(Class c, Field f, String value){
+        List listObj = new ArrayList();
+        
+        try {
+            Session s = HibernateUtil.getSession();
+            HibernateUtil.begin();
+            
+            listObj = s.createCriteria(c)
+                    .add(Restrictions.like(c.getSimpleName()+"."+f.getName(), value, MatchMode.ANYWHERE))
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listObj;
+    }
+    
+    public List<?> selecionar(Class c, Object o){
+        List listObj = new ArrayList();
+        try {
+            Session s = HibernateUtil.getSession();
+            HibernateUtil.begin();
+            
+            listObj = s.createCriteria(c)
+                    .add(Example.create(o).excludeZeroes())
+                    .list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listObj;        
+    }
     
     public Object selecionar(int id, Class c) {
         Object o = null;

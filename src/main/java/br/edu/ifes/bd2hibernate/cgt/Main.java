@@ -19,22 +19,34 @@ import java.util.List;
 public class Main {
 
     public static void main(String args[]) {
-        List<Time> listaTime = new ArrayList();
-        Time time = new Time();
-        listaTime = time.selecionarTodos();
-        for (Time t : listaTime) {
-            System.out.println(t);
+        Time time1 = new Time("Flamengo", new Date(), 1000f);
+//        Time time2= new Time("Vasco", new Date(), 1000f);
+//        
+//        time1.inserir(time1);
+//        time2.inserir(time2);
+//        
+//        Jogador jogador1 = new Jogador("André Aguiar",new Date(), "Rua", time1);
+//        Jogador jogador2 = new Jogador("André Leão",new Date(), "Rua", time1);
+//        Jogador jogador3 = new Jogador("Breno Sampaio",new Date(), "Rua", time2);
+//        Jogador jogador4 = new Jogador("Diego Pasti",new Date(), "Rua", time2);
+        
+//        jogador1.inserir(jogador1);
+//        jogador2.inserir(jogador2);
+//        jogador3.inserir(jogador3);
+//        jogador4.inserir(jogador4);
+        
+//        List<Time> times = new ArrayList<Time>();
+//                times.add(new Time().selecionar("Flamengo"));
+//        for (Time j : times) {
+//            System.out.println(j);
+//        }
+        
+        List<Jogador> jogadores = new Jogador().selecionar("Flamengo");
+        for (Jogador jogador : jogadores) {
+            System.out.println(jogador);
         }
         
-        Jogador j = new Jogador("André Leão", new Date(), "Rua Tinhosa", listaTime.get(0));
-        j.inserir(j);
-        
-        j = j.selecionar(1);
-        System.out.println(j);
-        //System.out.println(j);
-        //j.setNome("André Leão");
-        //j.atualizar(j);
-        
         HibernateUtil.shutdown();
+        
     }
 }
