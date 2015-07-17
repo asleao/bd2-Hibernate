@@ -8,6 +8,8 @@ package br.edu.ifes.bd2hibernate.cgt;
 import br.edu.ifes.bd2hibernate.cdp.Jogador;
 import br.edu.ifes.bd2hibernate.cdp.Time;
 import br.edu.ifes.bd2hibernate.cgd.HibernateUtil;
+import br.edu.ifes.bd2hibernate.datafactory.JogadorData;
+import br.edu.ifes.bd2hibernate.datafactory.TimeData;
 import br.edu.ifes.bd2hibernate.util.DateValidator;
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -30,6 +32,8 @@ public class Menu {
     DateValidator dateValidator = new DateValidator();
     HashMap<String, String> messages = new HashMap<String, String>();
     DataFactory df = new DataFactory();
+    JogadorData jogadorData = new JogadorData();
+    TimeData timeData = new TimeData();
     
     public Menu(){
         //Inicializa o Hibernate
@@ -57,13 +61,14 @@ public class Menu {
         Scanner menuEntrada = new Scanner(System.in);
         int menu = -1;
         while (menu != 0) {
-            System.out.println("1 - Cadastrar Jogador");
+            System.out.println("\n\n1 - Cadastrar Jogador");
             System.out.println("2 - Cadastrar Time");
             System.out.println("3 - Listar Times");
             System.out.println("4 - Listar Jogadores");
             System.out.println("5 - Buscar Jogador");
             System.out.println("6 - Buscar Time");
             System.out.println("7 - Buscar Jogadores do Time");
+            System.out.println("8 - Popular Banco");
             System.out.println("0 - Sair");
             
             menu = menuEntrada.nextInt();
@@ -91,11 +96,21 @@ public class Menu {
                 case 7:
                     listarJogadoresDoTime();
                     break;
+                case 8:
+                    popularBanco();
+                    break;
                 case 0:
                     HibernateUtil.shutdown();
                     return;
             }
         }
+    }
+    
+    private void popularBanco(){
+         System.out.println(this.messages.get("INICIANDO_POPULACAO"));
+        timeData.criaTimeRandom(df, 10);   
+        jogadorData.criaJogadorRandom(df, 10);                     
+        System.out.println(this.messages.get("ENCERRANDO_POPULACAO"));    
     }
     
     private void imprimeMensagem(String objeto, String operacao){
