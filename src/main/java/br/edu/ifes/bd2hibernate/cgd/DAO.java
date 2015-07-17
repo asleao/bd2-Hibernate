@@ -93,6 +93,9 @@ public abstract class DAO {
             listObj = s.createCriteria(c)
                     .add(Restrictions.like(c.getSimpleName()+"."+f.getName(), value, MatchMode.ANYWHERE))
                     .list();
+            
+            HibernateUtil.commit();
+            HibernateUtil.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,6 +111,9 @@ public abstract class DAO {
             listObj = s.createCriteria(c)
                     .add(Example.create(o).excludeZeroes())
                     .list();
+            
+            HibernateUtil.commit();
+            HibernateUtil.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

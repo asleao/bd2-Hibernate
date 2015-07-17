@@ -7,8 +7,6 @@ package br.edu.ifes.bd2hibernate.cgt;
 
 import br.edu.ifes.bd2hibernate.cdp.Jogador;
 import br.edu.ifes.bd2hibernate.cdp.Time;
-import br.edu.ifes.bd2hibernate.cgd.HibernateUtil;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -41,12 +39,8 @@ public class Main {
 //            System.out.println(j);
 //        }
         
-        List<Jogador> jogadores = new Jogador().selecionar("Flamengo");
-        for (Jogador jogador : jogadores) {
-            System.out.println(jogador);
-        }
         
-        HibernateUtil.shutdown();
-        
+        Menu menu = new Menu();
+        menu.load();
     }
 }

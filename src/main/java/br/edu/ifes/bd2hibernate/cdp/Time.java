@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -42,7 +43,7 @@ public class Time extends TimeDAO implements Serializable{
     @Column(name = "mensalidadeSocio", nullable = false)
     private float mensalidadeSocio;
     
-    @OneToMany(mappedBy="time")
+    @OneToMany(mappedBy="time", fetch = FetchType.EAGER)
     private Set<Jogador> jogadores;
 
     public Time() {
